@@ -25,7 +25,13 @@ export default function ProviderAuth({
   });
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <div className="w-full justify-center items-center">
+          <div className="w-36 h-36 border-8 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
+        </div>
+      </>
+    );
   }
 
   if (error !== null) {

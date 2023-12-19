@@ -1,6 +1,5 @@
-"use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 
 export const SidebarLink = ({ children, href }: any) => {
   return (
@@ -15,12 +14,26 @@ export const SidebarLink = ({ children, href }: any) => {
   );
 };
 
-const Sidebar = ({ children }: { children: React.ReactNode }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const refMenu = [
+  {
+    name: "Home",
+    href: "/",
+  },
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+  },
+  {
+    name: "Product",
+    href: "/product",
+  },
+  {
+    name: "Kasir",
+    href: "/kasir",
+  },
+];
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
+const Sidebar = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div className="drawer lg:drawer-open">
@@ -37,9 +50,12 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
             className="drawer-overlay"
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-            {/* Sidebar content here */}
-            <SidebarLink href="/">Home</SidebarLink>
-            <SidebarLink href="/kasir">Kasir</SidebarLink>
+            {refMenu.map((item: any, index: any) => (
+              <li key={index}>
+                {/* Sidebar content here */}
+                <SidebarLink href={item.href}>{item.name}</SidebarLink>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
